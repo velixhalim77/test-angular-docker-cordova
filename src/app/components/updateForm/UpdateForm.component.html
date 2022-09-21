@@ -1,0 +1,30 @@
+<div class="mt-2">
+    <button type="button" class="btn btn-danger" (click)="navigateToHome()">back</button>
+</div>
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="name">Pokemon Name:</label>
+        <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="pokemon.name">
+    </div>
+    <div class="form-group">
+        <label for="type">Pokemon Type:</label>
+        <input type="text" class="form-control" id="type" name="type" required [(ngModel)]="pokemon.type">
+    </div>
+    <div class="mt-2 float-right">
+        <button type="submit" class="btn btn-success float-right" [disabled]="isSubmitted">Submit</button>
+    </div>
+
+</form>
+
+<!-- <ngb-alert [type]="success" (closed)="close(alert)">{{message}}</ngb-alert> -->
+<!-- <h1>create form</h1> -->
+<!-- <div [hidden]="true">
+    <ngb-alert type="success">
+        <strong>Success</strong> Input Data
+    </ngb-alert>
+    
+    <ngb-alert type="danger">
+        <strong>Failed</strong> Input Data
+    </ngb-alert>
+</div> -->
+

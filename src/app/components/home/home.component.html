@@ -1,0 +1,80 @@
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Pokemon Detail</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+      <form>
+          <div class="mb-3">
+              <label for="nama">Nama Pokemon:</label>
+              <input type="text" class="form-control" id="nama" name="nama" disabled [(ngModel)]="pokemonDetail.name"/>
+          </div>
+          <div class="mb-3">
+            <label for="type">Type Pokemon:</label>
+            <input type="text" class="form-control" id="type" name="type" disabled [(ngModel)]="pokemonDetail.type"/>
+        </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close')">close</button>
+    </div>
+</ng-template>
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Pokemon Delete</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+      <form>
+          <div class="mb-3">
+              <label for="nama">Nama Pokemon:</label>
+              <input type="text" class="form-control" id="nama" name="nama" disabled [(ngModel)]="pokemonDetail.name"/>
+          </div>
+          <div class="mb-3">
+            <label for="type">Type Pokemon:</label>
+            <input type="text" class="form-control" id="type" name="type" disabled [(ngModel)]="pokemonDetail.type"/>
+        </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+      <label>Are you want to delete ?</label>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close')">cancel</button>
+      <button #closebutton type="button" class="btn btn-danger" (click)="deletePokemonApprove(pokemonDetail.id); modal.close('close')"  data-dismiss="modal" aria-label="Close">Delete</button>
+    </div>
+</ng-template>
+
+<h2>Example get api Pokemon</h2>
+
+<button type="button" class="btn btn-success m-1" (click)="reloadData()">reload call api</button>
+<button type="button" class="btn btn-primary" (click)="createForm()">Add Pokemon</button>
+<p> Response:</p>
+<!-- <p>{{getPokemonResponse}}</p> -->
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of pokemon; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{data.name}}
+      </td>
+      <td>{{ data.type}}</td>
+      <td>
+        <button type="button" class="btn btn-warning m-1" (click)="updatePokemon(data.id)" >Update</button>
+        <button type="button" class="btn btn-info m-1" (click)="detailPokemon(data.id, content)" >Details</button>
+        <button type="button" class="btn btn-danger " (click)="deletePokemon(data.id, contentDelete)" >Delete</button>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+
